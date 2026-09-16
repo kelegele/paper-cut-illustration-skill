@@ -1,0 +1,4 @@
+interface:
+  display_name: "剪纸插画"
+  short_description: "基于原图与完整保留的提示词，制作温暖精致的分层卡纸风格人物插画"
+  default_prompt: "使用 $paper-cut-illustration，把我上传的图片变成剪纸插画，保留原图的主体特征和取景范围，并让我选择输出比例与背景。"
