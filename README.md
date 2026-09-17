@@ -27,29 +27,24 @@ output/                          # 成品输出目录（已 gitignore）
 
 ## 安装
 
-### skills CLI（推荐）
+### 发给 Agent 的安装提示词（推荐）
+
+skill 由 Agent 安装。把下面整段发给 ZCode / Claude Code / Codex 等：
+
+```text
+请安装 paper-cut-illustration skill：
+1. 克隆 https://github.com/kelegele/paper-cut-illustration-skill 到本地持久目录，位置自选并告知。
+2. 把仓库内的 paper-cut-illustration/ 目录链入你读取的用户级 skills 目录（如 ~/.zcode/skills/、~/.claude/skills/、~/.agents/skills/，按你自己的规则选）：Windows 用 junction（mklink /J），Linux/macOS 用软链（ln -s）。不复制文件，保持仓库为唯一源，仓库更新即生效。
+3. 完成后确认 <skills 目录>/paper-cut-illustration/SKILL.md 可读，报告安装位置。
+```
+
+### skills CLI
 
 ```bash
 npx skills add kelegele/paper-cut-illustration-skill -a claude-code --copy -y
 ```
 
 装到当前项目 `.claude/skills/`，为真实文件：`--copy` 直接复制成真身，不在 `.agents/skills/` 留源建软链；`-a` 指定目标 agent；`-y` 跳过确认。安装来源记录在 `skills-lock.json`，便于还原。
-
-### 手动复制或软链
-
-把仓库内 `paper-cut-illustration/` 整个目录放进 agent 的 skills 目录（Claude Code 为 `~/.claude/skills/`，跨工具通用为 `~/.agents/skills/`）：
-
-```bash
-# Linux / macOS
-ln -s /path/to/this-repo/paper-cut-illustration ~/.agents/skills/paper-cut-illustration
-```
-
-```bat
-:: Windows（cmd）
-mklink /J "%USERPROFILE%\.agents\skills\paper-cut-illustration" "D:\path\to\this-repo\paper-cut-illustration"
-```
-
-软链/junction 不复制文件，仓库为唯一源，改仓库即生效；复制方式则更新后需重新复制。
 
 ## 使用
 
