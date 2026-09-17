@@ -27,14 +27,29 @@ output/                          # 成品输出目录（已 gitignore）
 
 ## 安装
 
-把 `paper-cut-illustration/` 整个目录复制或软链到 agent 的 skills 目录，例如：
+### skills CLI（推荐）
 
 ```bash
-# Linux / macOS（~/.agents/skills/ 为跨工具目录）
+npx skills add kelegele/paper-cut-illustration-skill -a claude-code --copy -y
+```
+
+装到当前项目 `.claude/skills/`，为真实文件：`--copy` 直接复制成真身，不在 `.agents/skills/` 留源建软链；`-a` 指定目标 agent；`-y` 跳过确认。安装来源记录在 `skills-lock.json`，便于还原。
+
+### 手动复制或软链
+
+把仓库内 `paper-cut-illustration/` 整个目录放进 agent 的 skills 目录（Claude Code 为 `~/.claude/skills/`，跨工具通用为 `~/.agents/skills/`）：
+
+```bash
+# Linux / macOS
 ln -s /path/to/this-repo/paper-cut-illustration ~/.agents/skills/paper-cut-illustration
 ```
 
-Windows 用 junction（`mklink //J`）同样只留仓库一份源，改动即生效。
+```bat
+:: Windows（cmd）
+mklink /J "%USERPROFILE%\.agents\skills\paper-cut-illustration" "D:\path\to\this-repo\paper-cut-illustration"
+```
+
+软链/junction 不复制文件，仓库为唯一源，改仓库即生效；复制方式则更新后需重新复制。
 
 ## 使用
 
